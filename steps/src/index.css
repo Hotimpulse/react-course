@@ -97,6 +97,9 @@ h3 {
   height: 2rem;
   cursor: pointer;
   margin-top: 5rem;
-  position: absolute;
-  top: 0;
+}
+
+.step {
+  display: flex;
+  gap: 1rem;
 }

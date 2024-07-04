@@ -1,5 +1,6 @@
 import "./App.css";
 import { useState } from "react";
+import Challenge from "./challenge1/Challenge";
 
 const messages = [
   "Learn React ⚛️",
@@ -28,6 +29,7 @@ function App() {
 
   return (
     <>
+      <Challenge />
       {isOpen && (
         <div className="steps">
           <div className="numbers">
