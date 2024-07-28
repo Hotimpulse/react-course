@@ -6,13 +6,14 @@ export default function Challenge() {
 
   const dateNow = new Date();
   dateNow.setDate(dateNow.getDate() + count);
+
   return (
-    <div>
-      <p className="step">
+    <div className="step">
+      <p>
         <button onClick={() => setStep((s) => s - 1)}>-</button>Step: {step}
         <button onClick={() => setStep((s) => s + 1)}>+</button>
       </p>
-      <p className="step">
+      <p>
         <button onClick={() => setCount((c) => c - step)}>-</button>Count:{" "}
         {count}
         <button onClick={() => setCount((c) => c + step)}>+</button>
