@@ -1,25 +1,25 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
 
-const initialItems = [
-  {
-    id: 1,
-    description: "Passports",
-    quantity: 2,
-    packed: false,
-  },
-  {
-    id: 2,
-    description: "Socks",
-    quantity: 12,
-    packed: false,
-  },
-  {
-    id: 3,
-    description: "Charger",
-    quantity: 1,
-    packed: true,
-  },
-];
+// const initialItems = [
+//   {
+//     id: 1,
+//     description: "Passports",
+//     quantity: 2,
+//     packed: false,
+//   },
+//   {
+//     id: 2,
+//     description: "Socks",
+//     quantity: 12,
+//     packed: false,
+//   },
+//   {
+//     id: 3,
+//     description: "Charger",
+//     quantity: 1,
+//     packed: true,
+//   },
+// ];
 
 interface Item {
   id?: number;
@@ -29,11 +29,33 @@ interface Item {
 }
 
 export default function App() {
+  const [items, setItems] = useState<Item[]>([]);
+
+  function handleAddItems(item: Item) {
+    setItems((items) => [...items, item]);
+  }
+
+  function handleDeleteItem(id: number) {
+    setItems((items) => items.filter((item) => item.id !== id));
+  }
+
+  function handleToggleItem(id: number) {
+    setItems((items) =>
+      items.map((item: Item) =>
+        item.id === id ? { ...item, packed: !item.packed } : item
+      )
+    );
+  }
+
   return (
     <div className="app">
       <Logo />
-      <Form />
-      <PackingList />
+      <Form onAddItems={handleAddItems} />
+      <PackingList
+        items={items}
+        onDeleteItem={handleDeleteItem}
+        onToggleItem={handleToggleItem}
+      />
       <Stats />
     </div>
   );
@@ -43,7 +65,7 @@ function Logo() {
   return <h1>🌴 Far Away 👜 </h1>;
 }
 
-function Form() {
+function Form({ onAddItems }) {
   const [description, setDescription] = useState<string>("");
   const [quantity, setQuantity] = useState<number>(1);
 
@@ -53,6 +75,8 @@ function Form() {
     if (!description) return;
 
     const newItem = { description, quantity, packed: false, id: Date.now() };
+
+    onAddItems(newItem);
 
     setDescription("");
     setQuantity(1);
@@ -86,36 +110,42 @@ function Form() {
   );
 }
 
-function Item(item: Item) {
-  return (
-    <li>
-      <span
-        style={item.packed === true ? { textDecoration: "line-through" } : {}}
-      >
-        {item.quantity} {item.description}
-      </span>
-      <button>Delete ❌</button>
-    </li>
-  );
-}
-
-function PackingList() {
+function PackingList({ items, onDeleteItem, onToggleItem }) {
   return (
     <div className="list">
       <h2>LIST</h2>
       <ul>
-        {initialItems.map((item: Item, index: number) => (
+        {items.map((item: Item) => (
           <Item
+            item={item}
+            onDeleteItem={onDeleteItem}
+            onToggleItem={onToggleItem}
             key={item.id}
-            description={item.description}
-            quantity={item.quantity}
-            packed={item.packed}
           />
         ))}
       </ul>
     </div>
   );
 }
+
+function Item({ item, onDeleteItem, onToggleItem }) {
+  return (
+    <li>
+      <input
+        type="checkbox"
+        value={item.packed}
+        onChange={() => onToggleItem(item.id)}
+      />
+      <span
+        style={item.packed === true ? { textDecoration: "line-through" } : {}}
+      >
+        {item.quantity} {item.description}
+      </span>
+      <button onClick={() => onDeleteItem(item.id)}>Delete ❌</button>
+    </li>
+  );
+}
+
 function Stats() {
   return (
     <footer className="stats">
