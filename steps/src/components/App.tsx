@@ -1,9 +1,16 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
-import Logo from "./components/Logo";
-import Form from "./components/Form";
-import PackingList from "./components/PackingList";
-import Stats from "./components/Stats";
-import { IItem } from "./interfaces/IItem";
+import Logo from "./Logo";
+import Form from "./Form";
+import PackingList from "./PackingList";
+import Stats from "./Stats";
+import { IItem } from "../interfaces/IItem";
+import Accordion from "./Accordion";
+
+const someObjects = [
+  { title: "Hello1", text: "Text some text hello" },
+  { title: "Hello2", text: "Text some text hello2" },
+  { title: "Hello3", text: "Text some text hello3" },
+];
 
 export default function App() {
   const [items, setItems] = useState<IItem[]>([]);
@@ -35,6 +42,7 @@ export default function App() {
   return (
     <div className="app">
       <Logo />
+      <Accordion data={someObjects} />
       <Form onAddItems={handleAddItems} />
       <PackingList
         items={items}
