@@ -6,7 +6,8 @@
 
 body {
   font-size: 2rem;
-  color: #5a3e2b;
+  color: #010e49;
+
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-weight: 500;
@@ -25,7 +26,7 @@ h1 {
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  background-color: #96199b;
+  background-color: #349df3;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 8rem;
@@ -73,7 +74,6 @@ button,
 select,
 input {
   background-color: #ffebb3;
-  color: #5a3e2b;
   font-family: inherit;
   border: none;
   border-radius: 0.3rem;
@@ -86,10 +86,11 @@ input {
 .add-form button {
   text-transform: uppercase;
   background-color: #76c7ad;
+  color: #010e49;
 }
 
 .list {
-  background-color: #5a3e2b;
+  background-color: #a70f74;
   color: #ffebb3;
   padding: 4rem 0;
 
@@ -111,11 +112,8 @@ input {
 
 .list ul {
   list-style: none;
-  width: 80%;
-  overflow: scroll;
-
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(2, minmax(250px, 1fr));
   gap: 1.2rem;
   justify-content: center;
   align-content: start;
@@ -130,7 +128,7 @@ input {
 input[type="checkbox"] {
   height: 2rem;
   width: 2rem;
-  accent-color: #e5771f;
+  accent-color: #fac79e;
 }
 
 .list li button {
@@ -152,30 +150,26 @@ input[type="checkbox"] {
 .accordion {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   margin: 0 auto;
-
-  width: min(100% - 3rem);
-  height: 500px;
-  padding: 1rem;
   gap: 1.5rem;
+  padding: 1rem;
+  border-radius: 0.3rem;
+  box-shadow: 0px 0px 11px 2px rgba(0, 0, 0, 0.1);
 }
 
 .content-box {
   display: flex;
   flex-direction: column;
-  cursor: pointer;
-
-  padding: 1rem;
-  margin: 0 auto;
   gap: 1rem;
-
-  width: 100%;
-  height: fit-content;
+  margin: 0 auto;
+  padding: 1rem;
+  width: min(100% - 1rem, 600px);
+  height: 700px;
+  overflow: auto;
 
   border-radius: 0.3rem;
-  max-width: 600px;
   box-shadow: 0px 0px 11px 2px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
 
 .title {
@@ -188,9 +182,36 @@ input[type="checkbox"] {
 .item {
   display: flex;
   justify-content: space-between;
+  min-width: 400px;
+  padding: 2rem;
+  height: 100%;
 }
 
 .open {
-  color: green;
+  color: rgb(255, 9, 9);
   border-top: 1px solid green;
+}
+
+.accordion_calc {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 auto;
+  padding: 4rem 0;
+  width: 100%;
+}
+
+@media (width < 1060px) {
+  .content-box {
+    max-width: min(100% - 2rem, fit-content);
+  }
+
+  .item {
+    max-width: 400px;
+  }
+
+  .accordion_calc {
+    display: flex;
+    flex-direction: column;
+  }
 }

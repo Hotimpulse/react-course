@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { IItem } from "../interfaces/IItem";
+import { IItem } from "../../interfaces/IItem";
 import Item from "./Item";
 export default function PackingList({
   items,

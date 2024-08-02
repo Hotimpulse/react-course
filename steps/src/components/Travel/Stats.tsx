@@ -1,5 +1,5 @@
 import React from "react";
-import { IItem } from "../interfaces/IItem";
+import { IItem } from "../../interfaces/IItem";
 
 export default function Stats({ items }) {
   if (!items.length)

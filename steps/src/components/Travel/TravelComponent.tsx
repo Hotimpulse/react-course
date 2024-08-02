@@ -1,18 +1,19 @@
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import React, { useState } from "react";
 import Logo from "./Logo";
 import Form from "./Form";
 import PackingList from "./PackingList";
 import Stats from "./Stats";
-import { IItem } from "../interfaces/IItem";
+import { IItem } from "../../interfaces/IItem";
 import Accordion from "./Accordion";
+import CalculatorComponent from "../Calculator/CalculatorComponent";
 
 const someObjects = [
-  { title: "Hello1", text: "Text some text hello" },
-  { title: "Hello2", text: "Text some text hello2" },
-  { title: "Hello3", text: "Text some text hello3" },
+  { title: "Thailand", text: "Best beaches and sea food" },
+  { title: "Italy", text: "Culture and history" },
+  { title: "Finland", text: "Most peaceful glamping" },
 ];
 
-export default function App() {
+export default function TravelComponent() {
   const [items, setItems] = useState<IItem[]>([]);
 
   function handleAddItems(item: IItem) {
@@ -42,7 +43,10 @@ export default function App() {
   return (
     <div className="app">
       <Logo />
-      <Accordion data={someObjects} />
+      <div className="accordion_calc">
+        <Accordion data={someObjects} />
+        <CalculatorComponent />
+      </div>
       <Form onAddItems={handleAddItems} />
       <PackingList
         items={items}
